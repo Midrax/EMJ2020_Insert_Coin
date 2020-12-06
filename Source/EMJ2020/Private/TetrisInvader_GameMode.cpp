@@ -1,9 +1,9 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "TetrisInvaderGameMode.h"
+#include "TetrisInvader_GameMode.h"
 
-ATetrisInvaderGameMode::ATetrisInvaderGameMode()
+ATetrisInvader_GameMode::ATetrisInvader_GameMode()
 {
 	// set default pawn class to our Blueprinted character
 	static ConstructorHelpers::FClassFinder<APawn> PlayerPawnBPClass(TEXT("/Game/Characters/InvaderPawn"));

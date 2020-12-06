@@ -4,16 +4,16 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/GameModeBase.h"
-#include "TetrisInvaderGameMode.generated.h"
+#include "TetrisInvader_GameMode.generated.h"
 
 /**
  * 
  */
 UCLASS()
-class EMJ2020_API ATetrisInvaderGameMode : public AGameModeBase
+class EMJ2020_API ATetrisInvader_GameMode : public AGameModeBase
 {
 	GENERATED_BODY()
 	
 public:
-	ATetrisInvaderGameMode();
+	ATetrisInvader_GameMode();
 };
