@@ -11,4 +11,5 @@ ATetrisInvader_GameMode::ATetrisInvader_GameMode()
 	{
 		DefaultPawnClass = PlayerPawnBPClass.Class;
 	}
+
 }
