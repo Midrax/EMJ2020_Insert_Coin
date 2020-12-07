@@ -52,13 +52,16 @@ void ATetrisInvader_Enemy::BeginOverlap(UPrimitiveComponent* OverlappedComponent
 	//UE_LOG(LogClass, Warning, TEXT("%s: Got overlap with %s! (%s)"), *GetActorLabel(), *OtherActor->GetActorLabel(), *OtherActor->GetClass()->GetDescription());
 	if (OtherActor->IsA(ATetrisInvader_Bullet::StaticClass()))
 	{
-		UE_LOG(LogClass, Warning, TEXT("HIT!"));
-		OtherActor->Destroy();
-		m_controller->RemoveEnemy(this);
-		m_meshComponent->SetCollisionProfileName(TEXT("BlockAllDynamic"));
-		m_meshComponent->SetSimulatePhysics(true);
-		m_meshComponent->AddImpulse(FVector(impulse.X, RandomSign() * impulse.Y, impulse.Z));
-		m_meshComponent->AddTorqueInRadians(FVector(RandomSign() * torque.X, RandomSign() * torque.Y, RandomSign() * torque.Z));
+		if (Cast<ATetrisInvader_Bullet>(OtherActor)->playerBullet)
+		{
+			UE_LOG(LogClass, Warning, TEXT("HIT!"));
+			OtherActor->Destroy();
+			m_controller->RemoveEnemy(this);
+			m_meshComponent->SetCollisionProfileName(TEXT("BlockAllDynamic"));
+			m_meshComponent->SetSimulatePhysics(true);
+			m_meshComponent->AddImpulse(FVector(impulse.X, RandomSign() * impulse.Y, impulse.Z));
+			m_meshComponent->AddTorqueInRadians(FVector(RandomSign() * torque.X, RandomSign() * torque.Y, RandomSign() * torque.Z));
+		}
 	}
 	else if (OtherActor->GetActorLabel().StartsWith("LevelBound"))
 	{
