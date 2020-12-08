@@ -23,6 +23,8 @@ protected:
 	UPROPERTY(EditAnywhere)
 		float initialMoveTime;
 	UPROPERTY(EditAnywhere)
+		float fireTime;
+	UPROPERTY(EditAnywhere)
 		float moveX;
 	UPROPERTY(EditAnywhere)
 		float moveY;
@@ -46,6 +48,8 @@ private:
 		float moveDown;
 	UPROPERTY(Transient)
 		float currentMoveTime;
+	UPROPERTY(Transient)
+		float currentFireTime;
 	UPROPERTY(Transient)
 		float currentMoveDownCooldown;
 	UPROPERTY(Transient)

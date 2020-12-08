@@ -28,6 +28,7 @@ void ATetrisInvader_EnemiesController::BeginPlay()
     }
     initialCount = m_enemies.Num();
     currentMoveTime = initialMoveTime;
+    currentFireTime = 0;
 }
 
 // Called every frame
@@ -37,6 +38,7 @@ void ATetrisInvader_EnemiesController::Tick(float DeltaTime)
 
     moveTime += DeltaTime;
     currentMoveDownCooldown += DeltaTime;
+    currentFireTime += DeltaTime;
 
     if (moveTime > currentMoveTime)
     {
@@ -68,6 +70,32 @@ void ATetrisInvader_EnemiesController::Tick(float DeltaTime)
         {
             Enemy->AddActorWorldOffset(movement, true);
         }
+    }
+
+    if (currentFireTime > fireTime && m_enemies.Num() > 0)
+    {
+        currentFireTime = 0;
+        UObject* SpawnActor = Cast<UObject>(StaticLoadObject(UObject::StaticClass(), NULL, TEXT("/Game/Blueprints/BPTetrisInvader_EnemyBullet")));
+
+        UBlueprint* GeneratedBP = Cast<UBlueprint>(SpawnActor);
+        if (!SpawnActor)
+        {
+            GEngine->AddOnScreenDebugMessage(-1, 1.f, FColor::Red, FString::Printf(TEXT("CANT FIND OBJECT TO SPAWN")));
+            return;
+        }
+
+        UClass* SpawnClass = SpawnActor->StaticClass();
+        if (SpawnClass == NULL)
+        {
+            GEngine->AddOnScreenDebugMessage(-1, 1.f, FColor::Red, FString::Printf(TEXT("CLASS == NULL")));
+            return;
+        }
+
+        UWorld* World = GetWorld();
+        FActorSpawnParameters SpawnParams;
+        SpawnParams.Owner = this;
+        SpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+        World->SpawnActor<AActor>(GeneratedBP->GeneratedClass, m_enemies[FMath::RandRange(0, m_enemies.Num() - 1)]->GetActorLocation(), GetActorRotation(), SpawnParams);
     }
 
 }
