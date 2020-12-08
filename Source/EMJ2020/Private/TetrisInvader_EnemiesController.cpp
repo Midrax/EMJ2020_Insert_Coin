@@ -117,7 +117,7 @@ void ATetrisInvader_EnemiesController::RemoveEnemy(ATetrisInvader_Enemy* enemy)
         //m_enemies.Remove(enemy);
         m_deadEnemies.Add(enemy);
     }
-    currentMoveTime = initialMoveTime - ((1 - ((float) m_enemies.Num() / initialCount * 0.6f)) * initialMoveTime);
+    currentMoveTime = initialMoveTime - ((1 - ((float) m_enemies.Num() / initialCount * 0.4f)) * initialMoveTime);
     UE_LOG(LogClass, Warning, TEXT("currentMoveTime: %f"), currentMoveTime);
 }
 
