@@ -65,7 +65,7 @@ void ATetrisInvader_Enemy::BeginOverlap(UPrimitiveComponent* OverlappedComponent
 			UMaterialInstanceDynamic* matInstance = m_meshComponent->CreateDynamicMaterialInstance(0, Material);
 
 			if (matInstance != nullptr)
-				matInstance->SetScalarParameterValue("Darken", 0.8f);
+				matInstance->SetScalarParameterValue("Darken", 0.9f);
 		}
 	}
 	else if (OtherActor->GetActorLabel().StartsWith("LevelBound"))
