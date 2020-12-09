@@ -61,6 +61,11 @@ void ATetrisInvader_Enemy::BeginOverlap(UPrimitiveComponent* OverlappedComponent
 			m_meshComponent->SetSimulatePhysics(true);
 			m_meshComponent->AddImpulse(FVector(impulse.X, RandomSign() * impulse.Y, impulse.Z));
 			m_meshComponent->AddTorqueInRadians(FVector(RandomSign() * torque.X, RandomSign() * torque.Y, RandomSign() * torque.Z));
+			UMaterialInterface* Material = m_meshComponent->GetMaterial(0);
+			UMaterialInstanceDynamic* matInstance = m_meshComponent->CreateDynamicMaterialInstance(0, Material);
+
+			if (matInstance != nullptr)
+				matInstance->SetScalarParameterValue("Darken", 0.8f);
 		}
 	}
 	else if (OtherActor->GetActorLabel().StartsWith("LevelBound"))
