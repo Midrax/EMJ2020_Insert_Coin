@@ -34,6 +34,8 @@ protected:
 		float moveSpeedRatio;
 	UPROPERTY(EditAnywhere, Transient, BlueprintReadWrite)
 		bool isPlaying;
+	UPROPERTY(EditAnywhere, Transient, BlueprintReadWrite)
+		bool isAllEnemiesDied;
 
 public:	
 	// Called every frame

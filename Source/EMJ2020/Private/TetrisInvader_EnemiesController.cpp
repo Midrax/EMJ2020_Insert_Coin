@@ -13,6 +13,7 @@ ATetrisInvader_EnemiesController::ATetrisInvader_EnemiesController()
     initialCount = 0;
     moveTime = 0;
     isPlaying = false;
+    isAllEnemiesDied = false;
 }
 
 // Called when the game starts or when spawned
@@ -68,6 +69,8 @@ void ATetrisInvader_EnemiesController::Tick(float DeltaTime)
             {
                 m_enemies.Remove(Enemy);
             }
+
+            isAllEnemiesDied = (m_enemies.Num() == 0);
 
             for (ATetrisInvader_Enemy* Enemy : m_enemies)
             {
