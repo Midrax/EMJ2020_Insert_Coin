@@ -21,6 +21,8 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		float introMoveTime;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		float initialMoveTime;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		float fireTime;
@@ -30,6 +32,8 @@ protected:
 		float moveY;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		float moveSpeedRatio;
+	UPROPERTY(EditAnywhere, Transient, BlueprintReadWrite)
+		bool isPlaying;
 
 public:	
 	// Called every frame
@@ -38,9 +42,9 @@ public:
 	void RemoveEnemy(ATetrisInvader_Enemy*);
 
 private:
-	UPROPERTY()
+	UPROPERTY(VisibleAnywhere)
 		USceneComponent* m_sceneComponent;
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(VisibleAnywhere)
 		TArray<ATetrisInvader_Enemy*> m_enemies;
 	UPROPERTY(Transient)
 		TArray<ATetrisInvader_Enemy*> m_deadEnemies;
