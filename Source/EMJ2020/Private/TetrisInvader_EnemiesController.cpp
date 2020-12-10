@@ -9,6 +9,11 @@ ATetrisInvader_EnemiesController::ATetrisInvader_EnemiesController()
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 	m_sceneComponent = CreateDefaultSubobject<USceneComponent>("SceneComponent");
+    SetRootComponent(m_sceneComponent);
+    m_audioComponent = CreateDefaultSubobject<UAudioComponent>(TEXT("AudioComponent"));
+    m_audioComponent->SetupAttachment(RootComponent);
+    m_audioComponent->bAutoActivate = false;
+
     currentMoveDownCooldown = 0;
     initialCount = 0;
     moveTime = 0;
@@ -102,6 +107,7 @@ void ATetrisInvader_EnemiesController::Tick(float DeltaTime)
             SpawnParams.Owner = this;
             SpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
             World->SpawnActor<AActor>(GeneratedBP->GeneratedClass, m_enemies[FMath::RandRange(0, m_enemies.Num() - 1)]->GetActorLocation(), GetActorRotation(), SpawnParams);
+            m_audioComponent->Play();
         }
     }
 

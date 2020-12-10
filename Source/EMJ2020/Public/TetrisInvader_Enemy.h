@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "Components/BoxComponent.h"
+#include "Components/AudioComponent.h"
 #include "TetrisInvader_Bullet.h"
 #include "Math/UnrealMathUtility.h"
 #include "TetrisInvader_Enemy.generated.h"
@@ -26,6 +27,8 @@ public:
 		class UStaticMeshComponent* m_meshComponent;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		class UBoxComponent* m_boxComponent;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		class UAudioComponent* m_audioComponent;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		FVector impulse;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)

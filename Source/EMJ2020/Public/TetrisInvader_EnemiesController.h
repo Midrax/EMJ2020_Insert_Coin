@@ -6,6 +6,7 @@
 #include "GameFramework/Actor.h"
 #include "TetrisInvader_Enemy.h"
 #include "EngineUtils.h"
+#include "Components/AudioComponent.h"
 #include "TetrisInvader_EnemiesController.generated.h"
 
 UCLASS()
@@ -16,10 +17,8 @@ class EMJ2020_API ATetrisInvader_EnemiesController : public AActor
 public:	
 	// Sets default values for this actor's properties
 	ATetrisInvader_EnemiesController();
-
-protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		class UAudioComponent* m_audioComponent;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		float introMoveTime;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
@@ -36,6 +35,10 @@ protected:
 		bool isPlaying;
 	UPROPERTY(EditAnywhere, Transient, BlueprintReadWrite)
 		bool isAllEnemiesDied;
+
+protected:
+	// Called when the game starts or when spawned
+	virtual void BeginPlay() override;
 
 public:	
 	// Called every frame

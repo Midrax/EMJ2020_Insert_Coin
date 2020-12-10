@@ -19,6 +19,10 @@ ATetrisInvader_Enemy::ATetrisInvader_Enemy()
 	m_boxComponent->SetGenerateOverlapEvents(true);
 	m_boxComponent->OnComponentBeginOverlap.AddDynamic(this, &ATetrisInvader_Enemy::BeginOverlap);
 	m_boxComponent->SetupAttachment(RootComponent);
+
+	m_audioComponent = CreateDefaultSubobject<UAudioComponent>(TEXT("AudioComponent"));
+	m_audioComponent->SetupAttachment(RootComponent);
+	m_audioComponent->bAutoActivate = false;
 }
 
 void ATetrisInvader_Enemy::SetController(ATetrisInvader_EnemiesController* controller)
@@ -66,6 +70,7 @@ void ATetrisInvader_Enemy::BeginOverlap(UPrimitiveComponent* OverlappedComponent
 
 			if (matInstance != nullptr)
 				matInstance->SetScalarParameterValue("Darken", 0.9f);
+			m_audioComponent->Play();
 		}
 	}
 	else if (OtherActor->GetActorLabel().StartsWith("LevelBound"))
