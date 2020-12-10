@@ -73,7 +73,7 @@ void ATetrisInvader_Enemy::BeginOverlap(UPrimitiveComponent* OverlappedComponent
 			m_audioComponent->Play();
 		}
 	}
-	else if (OtherActor->GetActorLabel().StartsWith("LevelBound"))
+	else if (OtherActor->ActorHasTag(FName(TEXT("Bound"))))
 	{
 		m_controller->ToggleMoveDown();
 	}
