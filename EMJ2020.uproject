@@ -37,10 +37,6 @@
 			"Enabled": true
 		},
 		{
-			"Name": "AlembicImporter",
-			"Enabled": false
-		},
-		{
 			"Name": "AndroidDeviceProfileSelector",
 			"Enabled": false
 		},
@@ -72,35 +68,11 @@
 			"Enabled": false
 		},
 		{
-			"Name": "ArchVisCharacter",
-			"Enabled": false
-		},
-		{
-			"Name": "AudioCapture",
-			"Enabled": false
-		},
-		{
-			"Name": "AvfMedia",
-			"Enabled": false
-		},
-		{
-			"Name": "CLionSourceCodeAccess",
-			"Enabled": false
-		},
-		{
-			"Name": "CodeLiteSourceCodeAccess",
-			"Enabled": false
-		},
-		{
 			"Name": "GooglePAD",
 			"Enabled": false
 		},
 		{
 			"Name": "GoogleCloudMessaging",
-			"Enabled": false
-		},
-		{
-			"Name": "KDevelopSourceCodeAccess",
 			"Enabled": false
 		},
 		{
@@ -136,10 +108,6 @@
 			]
 		},
 		{
-			"Name": "MLSDK",
-			"Enabled": false
-		},
-		{
 			"Name": "OnlineSubsystemIOS",
 			"Enabled": false,
 			"SupportedTargetPlatforms": [
@@ -148,17 +116,12 @@
 			]
 		},
 		{
-			"Name": "OnlineSubsystemNull",
-			"Enabled": false
-		},
-		{
 			"Name": "RiderSourceCodeAccess",
 			"Enabled": false
 		}
 	],
 	"TargetPlatforms": [
 		"AllDesktop",
-		"MacNoEditor",
 		"WindowsNoEditor"
 	]
 }

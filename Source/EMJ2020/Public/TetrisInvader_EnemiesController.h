@@ -20,6 +20,8 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		class UAudioComponent* m_audioComponent;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		UBlueprint* m_enemyBullet;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		float introMoveTime;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		float initialMoveTime;
@@ -35,6 +37,7 @@ public:
 		bool isPlaying;
 	UPROPERTY(EditAnywhere, Transient, BlueprintReadWrite)
 		bool isAllEnemiesDied;
+
 
 protected:
 	// Called when the game starts or when spawned

@@ -86,27 +86,27 @@ void ATetrisInvader_EnemiesController::Tick(float DeltaTime)
         if (currentFireTime > fireTime && m_enemies.Num() > 0)
         {
             currentFireTime = 0;
-            UObject* SpawnActor = Cast<UObject>(StaticLoadObject(UObject::StaticClass(), NULL, TEXT("/Game/Blueprints/BPTetrisInvader_EnemyBullet")));
+            //UObject* SpawnActor = Cast<UObject>(StaticLoadObject(UObject::StaticClass(), NULL, TEXT("/Game/Blueprints/BPTetrisInvader_EnemyBullet")));
 
-            UBlueprint* GeneratedBP = Cast<UBlueprint>(SpawnActor);
-            if (!SpawnActor)
-            {
-                GEngine->AddOnScreenDebugMessage(-1, 1.f, FColor::Red, FString::Printf(TEXT("CANT FIND OBJECT TO SPAWN")));
-                return;
-            }
+            //UBlueprint* GeneratedBP = Cast<UBlueprint>(SpawnActor);
+            //if (!SpawnActor)
+            //{
+            //    GEngine->AddOnScreenDebugMessage(-1, 1.f, FColor::Red, FString::Printf(TEXT("CANT FIND OBJECT TO SPAWN")));
+            //    return;
+            //}
 
-            UClass* SpawnClass = SpawnActor->StaticClass();
-            if (SpawnClass == NULL)
-            {
-                GEngine->AddOnScreenDebugMessage(-1, 1.f, FColor::Red, FString::Printf(TEXT("CLASS == NULL")));
-                return;
-            }
+            //UClass* SpawnClass = SpawnActor->StaticClass();
+            //if (SpawnClass == NULL)
+            //{
+            //    GEngine->AddOnScreenDebugMessage(-1, 1.f, FColor::Red, FString::Printf(TEXT("CLASS == NULL")));
+            //    return;
+            //}
 
             UWorld* World = GetWorld();
             FActorSpawnParameters SpawnParams;
             SpawnParams.Owner = this;
             SpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
-            World->SpawnActor<AActor>(GeneratedBP->GeneratedClass, m_enemies[FMath::RandRange(0, m_enemies.Num() - 1)]->GetActorLocation(), GetActorRotation(), SpawnParams);
+            World->SpawnActor<AActor>(m_enemyBullet->GeneratedClass, m_enemies[FMath::RandRange(0, m_enemies.Num() - 1)]->GetActorLocation(), GetActorRotation(), SpawnParams);
             m_audioComponent->Play();
         }
     }
