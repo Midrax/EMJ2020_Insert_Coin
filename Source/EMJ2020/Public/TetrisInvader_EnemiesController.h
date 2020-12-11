@@ -20,7 +20,7 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		class UAudioComponent* m_audioComponent;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-		UBlueprint* m_enemyBullet;
+		UClass* m_enemyBullet;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		float introMoveTime;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
@@ -70,4 +70,5 @@ private:
 		int initialCount;
 	UPROPERTY(Transient)
 		float moveTime;
+
 };

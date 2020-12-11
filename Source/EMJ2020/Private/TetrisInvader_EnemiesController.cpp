@@ -6,9 +6,9 @@
 // Sets default values
 ATetrisInvader_EnemiesController::ATetrisInvader_EnemiesController()
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = true;
-	m_sceneComponent = CreateDefaultSubobject<USceneComponent>("SceneComponent");
+    // Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+    PrimaryActorTick.bCanEverTick = true;
+    m_sceneComponent = CreateDefaultSubobject<USceneComponent>("SceneComponent");
     SetRootComponent(m_sceneComponent);
     m_audioComponent = CreateDefaultSubobject<UAudioComponent>(TEXT("AudioComponent"));
     m_audioComponent->SetupAttachment(RootComponent);
@@ -19,6 +19,13 @@ ATetrisInvader_EnemiesController::ATetrisInvader_EnemiesController()
     moveTime = 0;
     isPlaying = false;
     isAllEnemiesDied = false;
+
+    static ConstructorHelpers::FObjectFinder<UClass> bpClassFinder(TEXT("Class'/Game/Blueprints/BPTetrisInvader_EnemyBullet.BPTetrisInvader_EnemyBullet_C'"));
+    if (bpClassFinder.Object)
+    {
+        m_enemyBullet = bpClassFinder.Object;
+    }
+
 }
 
 // Called when the game starts or when spawned
@@ -86,9 +93,10 @@ void ATetrisInvader_EnemiesController::Tick(float DeltaTime)
         if (currentFireTime > fireTime && m_enemies.Num() > 0)
         {
             currentFireTime = 0;
-            //UObject* SpawnActor = Cast<UObject>(StaticLoadObject(UObject::StaticClass(), NULL, TEXT("/Game/Blueprints/BPTetrisInvader_EnemyBullet")));
+            /*UObject* SpawnActor = Cast<UObject>(StaticLoadObject(UObject::StaticClass(), NULL, TEXT("/Game/Blueprints/BPTetrisInvader_EnemyBullet")));*/
 
             //UBlueprint* GeneratedBP = Cast<UBlueprint>(SpawnActor);
+
             //if (!SpawnActor)
             //{
             //    GEngine->AddOnScreenDebugMessage(-1, 1.f, FColor::Red, FString::Printf(TEXT("CANT FIND OBJECT TO SPAWN")));
@@ -102,12 +110,24 @@ void ATetrisInvader_EnemiesController::Tick(float DeltaTime)
             //    return;
             //}
 
-            UWorld* World = GetWorld();
-            FActorSpawnParameters SpawnParams;
-            SpawnParams.Owner = this;
-            SpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
-            World->SpawnActor<AActor>(m_enemyBullet->GeneratedClass, m_enemies[FMath::RandRange(0, m_enemies.Num() - 1)]->GetActorLocation(), GetActorRotation(), SpawnParams);
-            m_audioComponent->Play();
+            if (m_enemyBullet != nullptr)
+            {
+                UWorld* World = GetWorld();
+                FActorSpawnParameters SpawnParams;
+                SpawnParams.Owner = this;
+                SpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+                World->SpawnActor<AActor>(m_enemyBullet, m_enemies[FMath::RandRange(0, m_enemies.Num() - 1)]->GetActorLocation(), GetActorRotation(), SpawnParams);
+                m_audioComponent->Play();
+            }
+            //else if (GeneratedBP != nullptr)
+            //{
+            //    UWorld* World = GetWorld();
+            //    FActorSpawnParameters SpawnParams;
+            //    SpawnParams.Owner = this;
+            //    SpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+            //    World->SpawnActor<AActor>(GeneratedBP->GeneratedClass, m_enemies[FMath::RandRange(0, m_enemies.Num() - 1)]->GetActorLocation(), GetActorRotation(), SpawnParams);
+            //    m_audioComponent->Play();
+            //}
         }
     }
 
